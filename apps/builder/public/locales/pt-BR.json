@@ -140,6 +140,7 @@
   "editor.blocks.bubbles.image.switchWithLabel.onClick.placeholder": "Texto alternativo do link (descrição)",
   "editor.blocks.bubbles.textEditor.plate.label": "Editor de texto",
   "editor.blocks.bubbles.textEditor.searchVariable.placeholder": "Pesquisar uma variável",
+  "editor.blocks.logic.abTest.settings.percent.label": "Porcentagem dos usuários que seguem A:",
   "editor.blocks.start.text": "Início",
   "editor.editableTypebotName.tooltip.rename.label": "Renomear",
   "editor.gettingStartedModal.editorBasics.heading": "Fundamentos do Editor",

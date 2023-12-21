@@ -140,6 +140,7 @@
   "editor.blocks.bubbles.image.switchWithLabel.onClick.placeholder": "Link alt text (description)",
   "editor.blocks.bubbles.textEditor.plate.label": "Text editor",
   "editor.blocks.bubbles.textEditor.searchVariable.placeholder": "Search for a variable",
+  "editor.blocks.logic.abTest.settings.percent.label": "Percent of users to follow A:",
   "editor.blocks.start.text": "Start",
   "editor.editableTypebotName.tooltip.rename.label": "Rename",
   "editor.gettingStartedModal.editorBasics.heading": "Editor Basics",
