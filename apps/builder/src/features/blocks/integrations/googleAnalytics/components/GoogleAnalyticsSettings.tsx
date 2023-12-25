@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
 } from '@chakra-ui/react'
+import { useTranslate } from '@tolgee/react'
 import { GoogleAnalyticsBlock } from '@typebot.io/schemas'
 import React from 'react'
 
@@ -20,6 +21,8 @@ export const GoogleAnalyticsSettings = ({
   options,
   onOptionsChange,
 }: Props) => {
+	const { t } =useTranslate()
+	
   const updateTrackingId = (trackingId: string) =>
     onOptionsChange({ ...options, trackingId })
 
@@ -46,16 +49,16 @@ export const GoogleAnalyticsSettings = ({
   return (
     <Stack spacing={4}>
       <TextInput
-        label="Measurement ID:"
-        moreInfoTooltip="Can be found by clicking on your data stream in Google Analytics dashboard"
+        label={t("editor.blocks.integration.analytics.settings.measurementId.label")}
+        moreInfoTooltip={t("editor.blocks.integration.analytics.settings.measurementId.infoText")}
         defaultValue={options?.trackingId}
         placeholder="G-123456..."
         onChange={updateTrackingId}
       />
       <TextInput
-        label="Event action:"
+        label={t("editor.blocks.integration.analytics.settings.eventAction.label")}
         defaultValue={options?.action}
-        placeholder="Example: conversion"
+        placeholder={t("editor.blocks.integration.analytics.settings.eventAction.example")}
         onChange={updateAction}
       />
       <Accordion allowToggle>
@@ -63,36 +66,36 @@ export const GoogleAnalyticsSettings = ({
           <h2>
             <AccordionButton>
               <Box flex="1" textAlign="left">
-                Advanced
+                {t("editor.blocks.integration.analytics.settings.advanced")}
               </Box>
               <AccordionIcon />
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4} as={Stack} spacing="6">
             <TextInput
-              label="Event category:"
+              label={t("editor.blocks.integration.analytics.settings.advanced.eventCategory.label")}
               defaultValue={options?.category}
-              placeholder="Example: Typebot"
+              placeholder={t("editor.blocks.integration.analytics.settings.advanced.eventCategory.example")}
               onChange={updateCategory}
             />
             <TextInput
-              label="Event label:"
+              label={t("editor.blocks.integration.analytics.settings.advanced.eventLabel.label")}
               defaultValue={options?.label}
-              placeholder="Example: Campaign Z"
+              placeholder={t("editor.blocks.integration.analytics.settings.advanced.eventLabel.example")}
               onChange={updateLabel}
             />
             <NumberInput
               direction="column"
-              label="Event value:"
+              label={t("editor.blocks.integration.analytics.settings.advanced.eventValue.label")}
               defaultValue={options?.value}
-              placeholder="Example: 0"
+              placeholder={t("editor.blocks.integration.analytics.settings.advanced.eventValue.example")}
               onValueChange={updateValue}
             />
             <TextInput
-              label="Send to:"
-              moreInfoTooltip="Useful to send a conversion event to Google Ads"
+              label={t("editor.blocks.integration.analytics.settings.advanced.sendTo.label")}
+              moreInfoTooltip={t("editor.blocks.integration.analytics.settings.advanced.sendTo.infoText")}
               defaultValue={options?.sendTo?.toString()}
-              placeholder="Example: AW-123456789"
+              placeholder={t("editor.blocks.integration.analytics.settings.advanced.sendTo.example")}
               onChange={updateSendTo}
             />
           </AccordionPanel>
