@@ -35,6 +35,7 @@ import {
   defaultWebhookAttributes,
   defaultWebhookBlockOptions,
 } from '@typebot.io/schemas/features/blocks/integrations/webhook/constants'
+import { useTranslate } from '@tolgee/react'
 
 type Props = {
   blockId: string
@@ -56,6 +57,7 @@ export const WebhookAdvancedConfigForm = ({
   const [testResponse, setTestResponse] = useState<string>()
   const [responseKeys, setResponseKeys] = useState<string[]>([])
   const { showToast } = useToast()
+	const { t } = useTranslate()
 
   const updateMethod = (method: HttpMethod) =>
     onWebhookChange({ ...webhook, method })
@@ -118,7 +120,7 @@ export const WebhookAdvancedConfigForm = ({
   return (
     <>
       <SwitchWithRelatedSettings
-        label="Advanced configuration"
+        label={t("editor.blocks.integration.webhook.settings.advancedConfig.label")}
         initialValue={
           options?.isAdvancedConfig ??
           defaultWebhookBlockOptions.isAdvancedConfig
@@ -126,8 +128,8 @@ export const WebhookAdvancedConfigForm = ({
         onCheckChange={updateAdvancedConfig}
       >
         <SwitchWithLabel
-          label="Execute on client"
-          moreInfoContent="If enabled, the webhook will be executed on the client. It means it will be executed in the browser of your visitor. Make sure to enable CORS and do not expose sensitive data."
+          label={t("editor.blocks.integration.webhook.settings.executeOnClient.label")}
+          moreInfoContent={t("editor.blocks.integration.webhook.settings.executeOnClient.infoText")}
           initialValue={
             options?.isExecutedOnClient ??
             defaultWebhookBlockOptions.isExecutedOnClient
@@ -135,7 +137,9 @@ export const WebhookAdvancedConfigForm = ({
           onCheckChange={updateIsExecutedOnClient}
         />
         <HStack justify="space-between">
-          <Text>Method:</Text>
+          <Text>
+						{t("editor.blocks.integration.webhook.settings.method.label")}
+					</Text>
           <DropdownList
             currentItem={
               (webhook?.method ?? defaultWebhookAttributes.method) as HttpMethod
@@ -154,7 +158,9 @@ export const WebhookAdvancedConfigForm = ({
               <TableList<KeyValue>
                 initialItems={webhook?.queryParams}
                 onItemsChange={updateQueryParams}
-                addLabel="Add a param"
+                addLabel={t(
+									"editor.blocks.integration.webhook.settings.queryParams.addButton.label"
+								)}
               >
                 {(props) => <QueryParamsInputs {...props} />}
               </TableList>
@@ -169,7 +175,9 @@ export const WebhookAdvancedConfigForm = ({
               <TableList<KeyValue>
                 initialItems={webhook?.headers}
                 onItemsChange={updateHeaders}
-                addLabel="Add a value"
+                addLabel={t(
+									"editor.blocks.integration.webhook.settings.headers.addButton.label"
+								)}
               >
                 {(props) => <HeadersInputs {...props} />}
               </TableList>
@@ -198,14 +206,16 @@ export const WebhookAdvancedConfigForm = ({
           </AccordionItem>
           <AccordionItem>
             <AccordionButton justifyContent="space-between">
-              Variable values for test
+              {t("editor.blocks.integration.webhook.settings.variables.label")}
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel pt="4">
               <TableList<VariableForTest>
                 initialItems={options?.variablesForTest}
                 onItemsChange={updateVariablesForTest}
-                addLabel="Add an entry"
+                addLabel={t(
+									"editor.blocks.integration.webhook.settings.variables.addButton.label"
+								)}
               >
                 {(props) => <VariableForTestInputs {...props} />}
               </TableList>
@@ -219,7 +229,7 @@ export const WebhookAdvancedConfigForm = ({
           colorScheme="blue"
           isLoading={isTestResponseLoading}
         >
-          Test the request
+          {t("editor.blocks.integration.webhook.settings.testRequest.label")}
         </Button>
       )}
       {testResponse && (
@@ -238,7 +248,9 @@ export const WebhookAdvancedConfigForm = ({
               <TableList<ResponseVariableMapping>
                 initialItems={options?.responseVariableMapping}
                 onItemsChange={updateResponseVariableMapping}
-                addLabel="Add an entry"
+                addLabel={t(
+									"editor.blocks.integration.webhook.settings.variables.addButton.label"
+								)}
               >
                 {(props) => <ResponseMappingInputs {...props} />}
               </TableList>

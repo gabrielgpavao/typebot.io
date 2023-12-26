@@ -3,11 +3,13 @@ import { TableListItemProps } from '@/components/TableList'
 import { VariableSearchInput } from '@/components/inputs/VariableSearchInput'
 import { Stack, FormControl, FormLabel } from '@chakra-ui/react'
 import { VariableForTest, Variable } from '@typebot.io/schemas'
+import { useTranslate } from '@tolgee/react'
 
 export const VariableForTestInputs = ({
   item,
   onItemChange,
 }: TableListItemProps<VariableForTest>) => {
+	const { t } = useTranslate()
   const handleVariableSelect = (variable?: Variable) =>
     onItemChange({ ...item, variableId: variable?.id })
   const handleValueChange = (value: string) => {
@@ -17,7 +19,9 @@ export const VariableForTestInputs = ({
   return (
     <Stack p="4" rounded="md" flex="1" borderWidth="1px">
       <FormControl>
-        <FormLabel htmlFor={'name' + item.id}>Variable name:</FormLabel>
+        <FormLabel htmlFor={'name' + item.id}>
+					{t("editor.blocks.integration.webhook.settings.variables.name.label")}
+				</FormLabel>
         <VariableSearchInput
           id={'name' + item.id}
           initialVariableId={item.variableId}
@@ -25,7 +29,7 @@ export const VariableForTestInputs = ({
         />
       </FormControl>
       <TextInput
-        label="Test value:"
+        label={t("editor.blocks.integration.webhook.settings.variables.testValue.label")}
         defaultValue={item.value ?? ''}
         onChange={handleValueChange}
       />
